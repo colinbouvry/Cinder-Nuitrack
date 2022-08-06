@@ -199,7 +199,9 @@ public:
 	/**
 	 * @brief Set maximum number of users for tracking.
 	 * 
-	 * @note The default value is determined by the %Nuitrack config file.
+	 * @note The function supports tracking from 0 to 6 users.
+	 * By default, the skeleton of 2 users is tracked.
+	 * Tracking of more than 2 users may lead to performance loss.
 	 * @param [in] numUsers Maximum active user number to be set.
 	 */
 	void setNumActiveUsers(int numUsers)

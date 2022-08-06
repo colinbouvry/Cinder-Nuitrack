@@ -117,6 +117,15 @@ void BoxmanApp::setup()
 		//// now multiply the body points by this matrix to apply tilt correction
 	});
 
+	tracker->setNewGesturesCallback([this](GestureData::Ptr data) {
+		int num = data->getNumGestures();
+		auto usersState = data->getGestures();
+		for (auto& it : usersState) {
+			console() << "GESTURE " << it.userId << ", " << it.type;
+			getWindow()->setTitle("GESTURE " + toString(it.userId) + ", " + toString(it.type));
+		}
+	});
+
 	tracker->run();
 
 	setupCam();
@@ -154,7 +163,7 @@ void BoxmanApp::setupGrid() {
 
 void BoxmanApp::update()
 {
-	getWindow()->setTitle("Boxman - fps: " + toString(getAverageFps()));
+	//getWindow()->setTitle("Boxman - fps: " + toString(getAverageFps()));
 	tracker->poll();
 }
 

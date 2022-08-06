@@ -13,45 +13,40 @@ namespace nuitrack
 
 /**
  * @ingroup SkeletonTracker_group
- * @brief Joint index meaning (eg. head, hand etc.).
+ * @brief Joint index meaning (please note that <i>JOINT_LEFT_FINGERTIP, JOINT_RIGHT_FINGERTIP, JOINT_LEFT_FOOT, JOINT_RIGHT_FOOT</i> are not used in the current version).
  */
 enum JointType
 {
-	JOINT_NONE				= 0, ///< Reserved joint (unused)
+	JOINT_NONE				= 0, ///< Reserved joint (unused).
 
-	/** The body trunk joints: head, neck, torso and waist */
-	JOINT_HEAD				= 1,
-	JOINT_NECK				= 2,
-	JOINT_TORSO				= 3,
-	JOINT_WAIST				= 4,
-	
-	/** The left arm joints: collar, shoulder, elbow, wrist and hand */
-	JOINT_LEFT_COLLAR		= 5,
-	JOINT_LEFT_SHOULDER		= 6,
-	JOINT_LEFT_ELBOW		= 7,
-	JOINT_LEFT_WRIST		= 8,
-	JOINT_LEFT_HAND			= 9,
-	JOINT_LEFT_FINGERTIP	= 10, ///< The index finger of the left hand (not used in the current version)
+	JOINT_HEAD				= 1, ///< Head
+	JOINT_NECK				= 2, ///< Neck
+	JOINT_TORSO				= 3, ///< Torso
+	JOINT_WAIST				= 4, ///< Waist
 
-	/** The right arm joints: collar, shoulder, elbow, wrist and hand */
-	JOINT_RIGHT_COLLAR		= 11,
-	JOINT_RIGHT_SHOULDER	= 12,
-	JOINT_RIGHT_ELBOW		= 13,
-	JOINT_RIGHT_WRIST		= 14,
-	JOINT_RIGHT_HAND		= 15,
-	JOINT_RIGHT_FINGERTIP	= 16, ///< The index finger of the right hand (not used in the current version)
+	JOINT_LEFT_COLLAR		= 5, ///< Left collar
+	JOINT_LEFT_SHOULDER		= 6, ///< Left shoulder
+	JOINT_LEFT_ELBOW		= 7, ///< Left elbow
+	JOINT_LEFT_WRIST		= 8, ///< Left wrist
+	JOINT_LEFT_HAND			= 9, ///< Left hand
+	JOINT_LEFT_FINGERTIP	= 10, ///< Left fingertip (<b>not used in the current version</b>).
 
-	/** The left leg joints: hip, knee, ankle and foot */
-	JOINT_LEFT_HIP			= 17,
-	JOINT_LEFT_KNEE			= 18,
-	JOINT_LEFT_ANKLE		= 19,
-	JOINT_LEFT_FOOT			= 20,
+	JOINT_RIGHT_COLLAR		= 11, ///< Right collar
+	JOINT_RIGHT_SHOULDER	= 12, ///< Right shoulder
+	JOINT_RIGHT_ELBOW		= 13, ///< Right elbow
+	JOINT_RIGHT_WRIST		= 14, ///< Right wrist
+	JOINT_RIGHT_HAND		= 15, ///< Right hand
+	JOINT_RIGHT_FINGERTIP	= 16, ///< Right fingertip (<b>not used in the current version</b>).
 
-	/** The right leg joints: hip, knee, ankle and foot */
-	JOINT_RIGHT_HIP			= 21,
-	JOINT_RIGHT_KNEE		= 22,
-	JOINT_RIGHT_ANKLE		= 23,
-	JOINT_RIGHT_FOOT		= 24
+	JOINT_LEFT_HIP			= 17, ///< Left hip
+	JOINT_LEFT_KNEE			= 18, ///< Left knee
+	JOINT_LEFT_ANKLE		= 19, ///< Left ankle
+	JOINT_LEFT_FOOT			= 20, ///< Left foot (<b>not used in the current version</b>).
+
+	JOINT_RIGHT_HIP			= 21, ///< Right hip
+	JOINT_RIGHT_KNEE		= 22, ///< Right knee
+	JOINT_RIGHT_ANKLE		= 23, ///< Right ankle
+	JOINT_RIGHT_FOOT		= 24 ///< Right foot (<b>not used in the current version</b>).
 };
 
 /**

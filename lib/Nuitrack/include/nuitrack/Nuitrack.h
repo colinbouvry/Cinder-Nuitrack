@@ -50,8 +50,9 @@ public:
 	 * 
 	 * This should be called before using any other %Nuitrack API functions.
 	 * 
-	 * @note For Android OS config file get from %Nuitrack Manager.
+	 * @note For Android OS: config file is located in the folder with unpacked assets after the installation of Nuitrack.apk
 	 * @param config Config file for %Nuitrack initialization.
+	 * @warning <b>Do not</b> specify the <i>config</i> value as it's set <b>automatically</b>. Specify the path to <i>nuitrack.config</i> <b>only</b> if the default location of <i>nuitrack.config</i> (defined after the installation of %Nuitrack runtime) was changed.
 	 * @throw tdv::nuitrack::Exception
 	 */
 	static void init(const std::string& config = "")
@@ -127,6 +128,13 @@ public:
 	 */
 	static void release()
 	{
+		CallbackStruct<IssuesData::Ptr>* callbackStruct =
+				(CallbackStruct<IssuesData::Ptr>*)nuitrack_getIssuesCallbackStruct();
+		if(callbackStruct != NULL)
+		{
+			nuitrack_setIssuesCallbackStruct(NULL);
+			delete callbackStruct;
+		}
 		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_Release());
 	}
 
@@ -154,6 +162,24 @@ public:
 		int bufferSize = 5000;
 		char* buffer = new char[bufferSize];
 		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_GetConfigValue(key.c_str(), buffer, bufferSize));
+
+		std::string result = std::string(buffer);
+		delete[] buffer;
+
+		return result;
+	}
+
+	/**
+	 * @brief Get the JSON string of Nuitrack instance-based API.
+	 *
+	 * @return JSON string
+	 * @throw tdv::nuitrack::Exception
+	 */
+	static std::string getInstancesJson()
+	{
+		int bufferSize = (6000 * 6);
+		char* buffer = new char[bufferSize];
+		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_GetInstancesJson(buffer, bufferSize));
 
 		std::string result = std::string(buffer);
 		delete[] buffer;

@@ -95,7 +95,7 @@ public:
 	/**
 	 * @brief Add a callback for the new color frame request.
 	 *
-	 * @param[in] callback allback to be invoked at the new color frame request.
+	 * @param[in] callback Callback to be invoked at the new color frame request.
 	 * @return Callback ID. You can use it to remove the callback.
 	 * @see disconnectOnNewFrame
 	 */

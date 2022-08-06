@@ -19,6 +19,7 @@ Tracker::Tracker() {
 	onUserHandle = 0;
 	onHandHandle = 0;
 	onSkeletonHandle = 0;
+	onUserStateHandle = 0;
 }
 
 Tracker::~Tracker() {
@@ -59,10 +60,15 @@ void cinui::Tracker::poll() {
 		if (userTracker) Nuitrack::update(userTracker);
 		if (handTracker) Nuitrack::update(handTracker);
 		if (skeletonTracker) Nuitrack::update(skeletonTracker);
+		if (gestureRecognizer) Nuitrack::update(gestureRecognizer);
+	}
+	catch (const LicenseNotAcquiredException& e)
+	{
+		CI_LOG_EXCEPTION("LicenseNotAcquired", e );
 	}
 	catch (const tdv::nuitrack::Exception& e)
 	{
-		CI_LOG_E("Error updating Nuitrack: " << e.what());
+		CI_LOG_EXCEPTION("Nuitrack update failed", e );
 	}
 }
 
@@ -143,6 +149,10 @@ void cinui::Tracker::setDepthCallback(function<void(DepthFrame::Ptr)> onDepth)
 
 	if (!depthTracker) {
 		depthTracker = DepthSensor::create();
+
+		const OutputMode outputMode = depthTracker->getOutputMode();
+		mWidthDepth = outputMode.xres;
+		mHeightDepth = outputMode.yres;
 	}
 
 	onDepthHandle = depthTracker->connectOnNewFrame(onDepth);
@@ -221,4 +231,50 @@ void cinui::Tracker::unbindSkeletonCallback()
 	}
 
 	onSkeletonHandle = 0;
+}
+
+void cinui::Tracker::setUserStateChangeCallback(function<void(UserStateData::Ptr)> onUserState)
+{
+	if (onUserStateHandle) {
+		unbindUserStateChangeCallback();
+	}
+
+	if (!gestureRecognizer) {
+		gestureRecognizer = GestureRecognizer::create();
+		gestureRecognizer->setControlGesturesStatus(true);
+	}
+
+	onUserStateHandle = gestureRecognizer->connectOnUserStateChange(onUserState);
+}
+
+void cinui::Tracker::unbindUserStateChangeCallback()
+{
+	if (gestureRecognizer) {
+		gestureRecognizer->disconnectOnUserStateChange(onUserStateHandle);
+	}
+
+	onUserStateHandle = 0;
+}
+
+void cinui::Tracker::setNewGesturesCallback(std::function<void(GestureData::Ptr)> onNewGestures)
+{
+	if (onNewGestureHandle) {
+		unbindNewGesturesCallback();
+	}
+
+	if (!gestureRecognizer) {
+		gestureRecognizer = GestureRecognizer::create();
+		gestureRecognizer->setControlGesturesStatus(true);
+	}
+
+	onNewGestureHandle = gestureRecognizer->connectOnNewGestures(onNewGestures);
+}
+
+void cinui::Tracker::unbindNewGesturesCallback()
+{
+	if (gestureRecognizer) {
+		gestureRecognizer->disconnectOnUserStateChange(onUserStateHandle);
+	}
+
+	onNewGestureHandle = 0;
 }

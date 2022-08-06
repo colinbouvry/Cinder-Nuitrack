@@ -16,9 +16,12 @@ struct IssueTrackerData;
 
 typedef void (*OnNewIssueRawFunctionPtr)(IssueTrackerData* data);
 
-class IssueTrackerCallbackWrapper{
- public:
-	IssueTrackerCallbackWrapper():_sensor(NULL), _funcPtr(NULL) {}
+class IssueTrackerCallbackWrapper
+{
+public:
+	typedef std::shared_ptr<IssueTrackerCallbackWrapper> Ptr;
+
+	IssueTrackerCallbackWrapper() : _sensor(NULL), _funcPtr(NULL) {}
 	void setIssueTracker(tdv::nuitrack::IssueTracker* sensor)
 	{
 		_sensor = sensor;
@@ -29,12 +32,12 @@ class IssueTrackerCallbackWrapper{
 	}
 
 	void execute(std::shared_ptr<tdv::nuitrack::IssuesData> issuesData);
- private:
+private:
 	tdv::nuitrack::IssueTracker* _sensor;
 	OnNewIssueRawFunctionPtr _funcPtr;
 };
 
-extern "C" void* nuitrack_getIssuesCallbackStruct();
+extern "C" NUITRACK_API void* nuitrack_getIssuesCallbackStruct();
 extern "C" void NUITRACK_API nuitrack_setIssuesCallbackStruct(void*);
 
 extern "C" void NUITRACK_API nuitrack_registerIssuesTrackerCallback(IssueTrackerCallbackWrapper* wrapper);

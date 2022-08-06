@@ -77,6 +77,8 @@ extern "C" void NUITRACK_API nuitrack_DestroySkeletonTrackerData(SkeletonTracker
 
 extern "C" int NUITRACK_API nuitrack_GetNumUsers(SkeletonTrackerDataPtr);
 
+extern "C" uint64_t NUITRACK_API nuitrack_GetSkeletonDataTimestamp(SkeletonTrackerDataPtr);
+
 extern "C" int NUITRACK_API nuitrack_GetSkeletonID(SkeletonTrackerDataPtr, int);
 
 extern "C" void NUITRACK_API nuitrack_GetSkeletonJoint(SkeletonTrackerDataPtr, int, tdv::nuitrack::JointType, tdv::nuitrack::Joint*);

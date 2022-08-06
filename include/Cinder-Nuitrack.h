@@ -56,6 +56,12 @@ namespace cinui {
 		void setSkeletonCallback(function<void(SkeletonData::Ptr)> onSkeleton);
 		void unbindSkeletonCallback();
 
+		void setUserStateChangeCallback(function<void(UserStateData::Ptr)> onUserState);
+		void unbindUserStateChangeCallback();
+
+		void setNewGesturesCallback(function<void(GestureData::Ptr)> onNewGestures);
+		void unbindNewGesturesCallback();
+
 		// Vector3 -> vec3
 		static glm::vec3 fromVector3(Vector3 v) {
 			return glm::vec3(v.x, v.y, v.z);
@@ -73,6 +79,9 @@ namespace cinui {
 			return glm::toQuat(rotation);
 		}
 
+		int getWidthDepth() { return mWidthDepth; }
+		int getHeightDepth() { return mHeightDepth; }
+
 	protected:
 		uint64_t onIssuesHandle;
 		uint64_t onRGBHandle;
@@ -80,11 +89,17 @@ namespace cinui {
 		uint64_t onUserHandle;
 		uint64_t onHandHandle;
 		uint64_t onSkeletonHandle;
+		uint64_t onUserStateHandle;
+		uint64_t onNewGestureHandle;
 
 		ColorSensor::Ptr rgbTracker;
 		DepthSensor::Ptr depthTracker;
 		UserTracker::Ptr userTracker;
 		HandTracker::Ptr handTracker;
 		SkeletonTracker::Ptr skeletonTracker;
+		GestureRecognizer::Ptr gestureRecognizer;
+
+		int mWidthDepth = 0;
+		int mHeightDepth = 0;
 	};
 }

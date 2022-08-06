@@ -9,14 +9,15 @@ namespace tdv {
 namespace nuitrack {
 
 template <typename ParamType>
-class CallbackStruct {
+class CallbackStruct
+{
 	typedef std::function<void (ParamType)> CallbackType;
- public:
+public:
 
 	CallbackStruct()
- {
+	{
 		_maxHandle = 0;
- }
+	}
 
 	uint64_t addCallback(const CallbackType& callback)
 	{
@@ -55,23 +56,24 @@ class CallbackStruct {
 		return _callbacks.size();
 	}
 
- private:
+private:
 	std::vector<CallbackType> _callbacks;
 	std::vector<uint64_t> _handles;
 	uint64_t _maxHandle;
-  std::mutex _mutex;
+	std::mutex _mutex;
 };
 
 template <typename ParamType1, typename ParamType2>
-class CallbackStruct2p {
+class CallbackStruct2p
+{
 	typedef std::function<void (ParamType1, ParamType2)> CallbackType;
 
- public:
+public:
 
 	CallbackStruct2p()
- {
+	{
 		_maxHandle = 0;
- }
+	}
 
 	uint64_t addCallback(const CallbackType& callback)
 	{
@@ -109,11 +111,11 @@ class CallbackStruct2p {
 		return _callbacks.size();
 	}
 
- private:
+private:
 	std::vector<CallbackType> _callbacks;
 	std::vector<uint64_t> _handles;
 	uint64_t _maxHandle;
-  std::mutex _mutex;
+	std::mutex _mutex;
 };
 
 } /* namespace nuitrack */

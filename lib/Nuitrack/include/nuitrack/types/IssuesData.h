@@ -45,7 +45,7 @@ public:
 	 * 
 	 * @tparam T A data type that stores information about the requested issue.
 	 */
-	template<typename T> std::shared_ptr<T> getIssue() const
+	template<typename T> std::shared_ptr<T> NUITRACK_LOCAL getIssue() const
 	{
 		std::shared_ptr<T> result;
 		if(strcmp(T::getType().c_str(), "SensorIssue") == 0)
@@ -71,7 +71,7 @@ public:
 	 * @tparam T A data type that stores information about the requested issue.
 	 * @param userId ID of the user of interest.
 	 */
-	template<typename T> std::shared_ptr<T> getUserIssue(int userId) const
+	template<typename T> std::shared_ptr<T> NUITRACK_LOCAL getUserIssue(int userId) const
 	{
 		std::shared_ptr<T> result;
 

@@ -63,7 +63,9 @@ public:
 	{
 		NuitrackModule* pimpl = NULL;
 		ExceptionType exception_code = nuitrack_CreateDepthSensor(&pimpl);
-		ExceptionTranslator::generateExceptionByErrorCode(exception_code);
+		char exception_message[1024];
+		nuitrack_GetExceptionMessage(pimpl, exception_message, 1024);
+		ExceptionTranslator::generateExceptionByErrorCode(exception_code, exception_message);
 		return std::shared_ptr<DepthSensor>(new DepthSensor(pimpl));
 	}
 
@@ -124,7 +126,7 @@ public:
 	/**
 	 * @brief Add a callback for the new depth frame request.
 	 *
-	 * @param[in] callback allback to be invoked at the new depth frame request.
+	 * @param[in] callback Callback to be invoked at the new depth frame request.
 	 * @return Callback ID. You can use it to remove the callback.
 	 * @see disconnectOnNewFrame
 	 */

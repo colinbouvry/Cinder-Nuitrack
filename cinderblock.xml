@@ -3,7 +3,7 @@
 <block
 	name="Cinder-Nuitrack"
 	id="com.daanvanhasselt.cinder-nuitrack"
-	author="Daan van Hasselt"
+	author="Daan van Hasselt & Colin Bouvry"
 	summary="Wraps the Nuitrack SDK"
 	url="https://bitbucket.org/daanvanhasselt/Cinder-Nuitrack"
 	git="git@bitbucket.org:daanvanhasselt/cinder-nuitrack.git"

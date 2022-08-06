@@ -61,7 +61,7 @@ extern "C" uint64_t NUITRACK_API nuitrack_GetDepthFrameTimestamp(DepthSensorData
 
 extern "C" NUITRACK_API const uint16_t* nuitrack_GetDepthFrameData(DepthSensorDataPtr);
 
-extern "C" NUITRACK_API DEPRECATED const uint16_t* nuitrack_GetRgbFrameData(DepthSensorDataPtr);
+extern "C" NUITRACK_API NUITRACK_DEPRECATED const uint16_t* nuitrack_GetRgbFrameData(DepthSensorDataPtr);
 
 extern "C" void NUITRACK_API nuitrack_GetDepthSensorOutputMode(NuitrackModulePtr, tdv::nuitrack::OutputMode*);
 

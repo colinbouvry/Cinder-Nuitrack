@@ -34,6 +34,14 @@ NUITRACK_API bool nuitrack_GetNuitrackModuleCanUpdate(NuitrackModule*);
 
 NUITRACK_API uint64_t nuitrack_GetNuitrackModuleTimestamp(NuitrackModule*);
 
+NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetLicense(char* value, int bufferSize);
+
+NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetInstancesJson(char* value, int bufferSize);
+
+NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetExceptionType(NuitrackModulePtr module);
+
+NUITRACK_API void nuitrack_GetExceptionMessage(NuitrackModulePtr module, char * message, int size);
+
 }
 
 #endif /* NUITRACK_CAPI_H_ */

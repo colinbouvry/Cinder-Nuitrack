@@ -16,13 +16,13 @@
 #endif
 
 #define NUITRACK_LOCAL
-#define DEPRECATED __declspec(deprecated)
+#define NUITRACK_DEPRECATED __declspec(deprecated)
 
 #else
 #define MIDDLEWARE_API __attribute__ ((visibility ("default")))
 #define NUITRACK_API __attribute__ ((visibility ("default")))
 #define NUITRACK_LOCAL __attribute__ ((visibility ("hidden")))
-#define DEPRECATED __attribute__ ((deprecated))
+#define NUITRACK_DEPRECATED __attribute__ ((deprecated))
 #endif
 
 #endif /* NUITRACK_EXPORT_H */
